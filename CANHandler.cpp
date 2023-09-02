@@ -1,4 +1,5 @@
 #include "CANHandler.h"
+ 
 
 
 CANHandler::CANHandler() : CAN0(CAN0_CS) {
@@ -31,20 +32,26 @@ void CANHandler::sendAnalogData() {
     byte thedata[8] = {0};
 
     
-    thedata[0] = analogRead(A0) >> 8;
-    thedata[1] = analogRead(A0) & 0xFF;
-    thedata[2] = analogRead(A1) >> 8;
-    thedata[3] = analogRead(A1) & 0xFF;
-    thedata[4] = analogRead(A2) >> 8;
-    thedata[5] = analogRead(A2) & 0xFF;
+    thedata[0] = adc0 >> 8;
+    thedata[1] = adc0 & 0xFF;
+    thedata[2] = adc1 >> 8;
+    thedata[3] = adc1 & 0xFF;
+    thedata[4] = adc2 >> 8;
+    thedata[5] = adc2 & 0xFF;
+    thedata[6] = adc3 & 0xFF;
+    thedata[7] = adc3 >> 8;
+   
     Send_CAN0_message(0x690, thedata);
 
   
-    thedata[0] = analogRead(A3) >> 8;
-    thedata[1] = analogRead(A3) & 0xFF;
-    thedata[2] = analogRead(A4) >> 8;
-    thedata[3] = analogRead(A4) & 0xFF;
-    thedata[4] = analogRead(A5) >> 8;
-    thedata[5] = analogRead(A5) & 0xFF;
+    thedata[0] = adc4 >> 8;
+    thedata[1] = adc4 & 0xFF;
+    thedata[2] = adc5 >> 8;
+    thedata[3] = adc5 & 0xFF;
+    thedata[4] = 0x00;
+    thedata[5] = 0x00;
+    thedata[6] = 0x00;
+    thedata[7] = 0x00;
+    
     Send_CAN0_message(0x691, thedata);
 }

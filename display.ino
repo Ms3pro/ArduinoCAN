@@ -69,12 +69,12 @@ unsigned int determineFrameColor() {
 
 void readEGTValues() {
   // Чтение значений с аналоговых входов
-   rawEgt1 = analogRead(A0);
-   rawEgt2 = analogRead(A1);
-   rawEgt3 = analogRead(A2);
-   rawEgt4 = analogRead(A3);
-   rawEgt5 = analogRead(A4);
-   rawEgt6 = analogRead(A5);
+   rawEgt1 = adc0;
+   rawEgt2 = adc1;
+   rawEgt3 = adc2;
+   rawEgt4 = adc3;
+   rawEgt5 = adc4;
+   rawEgt6 = adc5;
 
   // Масштабирование значений с 0-1023 до 0-1000
    egt1 = map(rawEgt1, 0, 1023, 0, 1000);
@@ -181,24 +181,27 @@ void initialise_display()
 #if DISP1_ACTIVE == 1
 
   tft.initR(INITR_MINI160x80_PLUGIN);
-  tft.invertDisplay(true);
+  //tft.invertDisplay(true);
+  tft.invertDisplay(false);
   tft.setRotation(3);
   tft.fillScreen(WHITE);
    // Плавное включение подсветки
     for (int brightness = 0; brightness <= 255; brightness++) {
         analogWrite(TFT_LED, brightness);
-        delay(30);  // задержка для плавности; можно уменьшить или увеличить по желанию
+        delay(20);  // задержка для плавности; можно уменьшить или увеличить по желанию
     }
-  tft.setTextColor(RED);
-  tft.setTextSize(3);
-  tft.setCursor(30, 30);
-  tft.println("MS CAN");
+ // tft.setTextColor(RED);
+  //tft.setTextSize(3);
+  //tft.setCursor(30, 30);
+  //tft.println("MS CAN");
   //tft.drawRGBBitmap (0, 0, epd_bitmap_BMW_1, 160, 80);
   //tft.drawRGBBitmap (0, 0, epd_bitmap_BMW_2, 160, 80);
   tft.drawRGBBitmap (0,15, epd_bitmap_BMW_3, 160, 80);
   //tft.drawRGBBitmap (0,0, epd_bitmap_BMW_4, 160, 80); 
   tft.invertDisplay(false);
+  tft.setRotation(2);
   tft.fillScreen(BLACK);
+  tft.setRotation(3);
   tft.setTextColor(ORANGE);
   tft.setTextSize(2);
   tft.fillRect(0, 12, 158, 1, BLUE);  // color bar 05 ПОЛОСА РАЗДЕЛИТЕЛЬНАЯ

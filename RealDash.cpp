@@ -2,12 +2,21 @@
 
 void SendCANFramesToRealDash() {
     byte buf[8];
-    memcpy(buf, &seconds, 2);
+ /* memcpy(buf, &seconds, 2);
     memcpy(buf + 2, &pw1, 2);
     memcpy(buf + 4, &pw2, 2);
     memcpy(buf + 6, &rpm, 2);
 
     SendCANFrameToRealDash(3200, buf);
+*/
+    memcpy(buf, &adc0, 2);
+    memcpy(buf + 2, &adc1, 2);
+    memcpy(buf + 4, &adc2, 2);
+    memcpy(buf + 6, &adc3, 2);
+
+    SendCANFrameToRealDash(3200, buf);
+
+
 }
 
 void SendCANFrameToRealDash(unsigned long canFrameId, const byte* frameData) {
