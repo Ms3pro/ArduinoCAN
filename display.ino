@@ -1,24 +1,30 @@
-
 #if DISP1_ACTIVE == 1
 
 void driveDisplay() {
     
     readEGTValues();  
-  
-    // Определяем цвет рамки на основе значений EGT
-    unsigned int frameColor = determineFrameColor();
+double egtValues[6] = {egt1, egt2, egt3, egt4, egt5, egt6};  
+  bool shouldBlinkFrame = false;
+
+for (int i = 0; i < 6; i++) {
+    if (egtValues[i] > 850) {
+        shouldBlinkFrame = true;
+        break;
+    }
+}
+// Определяем цвет рамки на основе значений EGT
+unsigned int frameColor = shouldBlinkFrame ? (millis() % 3000 < 1500 ? ST7735_WHITE : ST7735_RED) : determineFrameColor();  
 
     // Отображаем рамку нужного цвета
     for (int i = 0; i < 2; i++) {
         tft.drawRect(i, i, tft.width() - i*2, tft.height() - i*2, frameColor);
     tft.fillRect(2, 74, 125, 2, WHITE);  // color bar 05 ПОЛОСА РАЗДЕЛИТЕЛЬНАЯ
     }
-double egtValues[6] = {egt1, egt2, egt3, egt4, egt5, egt6};
 
 for (int i = 0; i < 6; i++) {
     if (egtValues[i] > 800) {
         barBlinking[i] = true;
-        if (millis() - lastBlinkTime[i] > 2000) { // Переключение каждые 600 мс
+        if (millis() - lastBlinkTime[i] > 1500) { // Переключение каждые 1500 мс
             lastBlinkTime[i] = millis();
         }
     } else {
@@ -80,6 +86,7 @@ void readEGTValues() {
 
 }
  
+
 void DrawBarChartV(Adafruit_ST7735 & d, double x , double y , double w, double h , double loval , double hival , double inc , double curval ,  int dig , int dec, unsigned int barcolor, unsigned int voidcolor, unsigned int bordercolor, unsigned int textcolor, unsigned int backcolor, String label, boolean & redraw)
 {
 
@@ -186,9 +193,9 @@ void initialise_display()
   tft.setTextSize(3);
   tft.setCursor(30, 30);
   tft.println("MS CAN");
-  tft.drawRGBBitmap (0, 0, epd_bitmap_BMW_1, 160, 80);
-  tft.drawRGBBitmap (0, 0, epd_bitmap_BMW_2, 160, 80);
-  //tft.drawRGBBitmap (0,15, epd_bitmap_BMW_3, 160, 80);
+  //tft.drawRGBBitmap (0, 0, epd_bitmap_BMW_1, 160, 80);
+  //tft.drawRGBBitmap (0, 0, epd_bitmap_BMW_2, 160, 80);
+  tft.drawRGBBitmap (0,15, epd_bitmap_BMW_3, 160, 80);
   //tft.drawRGBBitmap (0,0, epd_bitmap_BMW_4, 160, 80); 
   tft.invertDisplay(false);
   tft.fillScreen(BLACK);
