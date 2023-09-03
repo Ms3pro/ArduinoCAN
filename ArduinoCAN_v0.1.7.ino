@@ -1,7 +1,6 @@
 #include <EEPROM.h>
 #include <TaskScheduler.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_ST7735.h>
+#include "pidautotuner.h"
 #include "RealDash.h"
 #include "SHT31Helper.h"
 #include "display.h"
@@ -204,6 +203,9 @@ void RealDashUpdateTask() {
   // Здесь вызывайте функцию или функции, которые обновляют данные для RealDash.
   updateRealDashData();
 }
+
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7735.h>
 
 #if DISP1_ACTIVE && defined DISP1_USE_ST7735_SPI
  Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_MOSI, TFT_SCLK, TFT_RST);
