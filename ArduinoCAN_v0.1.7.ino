@@ -35,7 +35,6 @@ unsigned long previousMillis = 0;
 int ledIndex = 0;
 bool turningOn = true;  // флаг для проверки, включаем ли мы LED или выключаем
 
-
 float prevTemp = 0.0;
 float prevHum = 0.0;
 unsigned long lastUpdateTime = 0;
@@ -51,7 +50,6 @@ int analogPins[TOTAL_ANALOG_PINS];
 volatile byte diginBuff[TOTAL_DIGITAL_PINS];
 volatile uint16_t adcBuff[TOTAL_ANALOG_PINS];
 volatile int16_t digoutBuff[TOTAL_DIGITAL_OUTPUT_PINS];
-
 
 int16_t adc0 = 0, adc1 = 0, adc2 = 0, adc3 = 0, adc4 = 0, adc5 = 0, adc6 = 0, adc7 = 0,
         adc8 = 0, adc9 = 0, adc10, adc11, adc12, adc13, adc14, adc15;
@@ -120,7 +118,6 @@ void initializeDigitalOutputs() {
     digout6 = digoutBuff[6];
     digout7 = digoutBuff[7];
 }
-
 
 byte sht31Operational = 0;  // 0 означает, что датчик не работает; 1 означает, что работает.
 byte sht31StateChanged = 0;  // 0 означает, что состояние не изменилось; 1 означает, что изменилось.
@@ -296,8 +293,6 @@ void ReadDigitalStatuses() {
 initializeDigin();  // инициализируем значения переменных diginXX из буфера
 }
 
-
-
 // Rest of your methods
 
 void processDigitalOutputs() {
@@ -315,7 +310,6 @@ void readDigitalOutputs() {
         digoutBuff[i] = digitalRead(digitalOutputPins[i]);
     }
 }
-
 
 void SHT31Task() {
     float temp = readTemperature();
