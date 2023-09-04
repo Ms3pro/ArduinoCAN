@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 #include <TaskScheduler.h>
-#include "PinConfiguration.h"
+#include "PinConfig.h"
 #include "pidautotuner.h"
 #include "RealDash.h"
 #include "SHT31Helper.h"
@@ -210,7 +210,7 @@ void RealDashUpdateTask() {
 #endif
 
 void setup() {
-configurePins();
+configPins();
 //ПРОВЕРКА РАБОТЫ СВЕТОДИОДОВ  ЕГТ КОГДА АРДУИНО ВКЛЮЧАЕТСЯ ИЛИ ПЕРЕЗАГРУЖАЕТСЯ   
   
   while(ledIndex < 6) {
