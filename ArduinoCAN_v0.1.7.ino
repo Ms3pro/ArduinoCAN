@@ -192,7 +192,7 @@ void saveAnalogStatesToEEPROM() {
 }
 
 void initializeDigout() {
-    for (int i = 0; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
+    for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
         digoutBuff[i] = digitalPins[digitalOutputPins[i]];
     }
 }
@@ -283,7 +283,7 @@ initializeDigin();  // инициализируем значения перем�
 // Rest of your methods
 
 void processDigitalOutputs() {
-    for (int i = 0; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
+    for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
         if (digoutBuff[i] == HIGH) {
             digitalWrite(digitalOutputPins[i], HIGH);
         } else {
@@ -293,7 +293,7 @@ void processDigitalOutputs() {
 }
 
 void readDigitalOutputs() {
-    for (int i = 0; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
+    for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
         digoutBuff[i] = digitalRead(digitalOutputPins[i]);
     }
 }
