@@ -65,12 +65,12 @@ void initializeADCs() {
     adc7 = (adcBuff[7] > 0) ? adcBuff[7] : 0;
     adc8 = (adcBuff[8] > 0) ? adcBuff[8] : 0;
     adc9 = (adcBuff[9] > 0) ? adcBuff[9] : 0;
-    adc10 = (adcBuff[10] > 0) ? adcBuff[10] : 0;
-    adc11 = (adcBuff[11] > 0) ? adcBuff[11] : 0;
-    adc12 = (adcBuff[12] > 0) ? adcBuff[12] : 0;
-    adc13 = (adcBuff[13] > 0) ? adcBuff[13] : 0;
-    adc14 = (adcBuff[14] > 0) ? adcBuff[14] : 0;
-    adc15 = (adcBuff[15] > 0) ? adcBuff[15] : 0;
+    adc10 = (adcBuff[10];
+    adc11 = (adcBuff[11];
+    adc12 = (adcBuff[12];
+    adc13 = (adcBuff[13];
+    adc14 = (adcBuff[14];
+    adc15 = (adcBuff[15];
 
 }
 
