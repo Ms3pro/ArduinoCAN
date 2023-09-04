@@ -1,5 +1,6 @@
 #include <EEPROM.h>
 #include <TaskScheduler.h>
+#include "PinConfig.h"
 #include "pidautotuner.h"
 #include "RealDash.h"
 #include "SHT31Helper.h"
@@ -191,7 +192,7 @@ void saveAnalogStatesToEEPROM() {
 }
 
 void initializeDigout() {
-    for (int i = 0; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
+    for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
         digoutBuff[i] = digitalPins[digitalOutputPins[i]];
     }
 }
@@ -210,10 +211,9 @@ void RealDashUpdateTask() {
 
 void setup() {
 
+configPins();
+
 //ПРОВЕРКА РАБОТЫ СВЕТОДИОДОВ  ЕГТ КОГДА АРДУИНО ВКЛЮЧАЕТСЯ ИЛИ ПЕРЕЗАГРУЖАЕТСЯ   
-  for (int i = 0; i < 6; i++) {
-    pinMode(EGT_LEDS[i], OUTPUT);
-  }
   
   while(ledIndex < 6) {
     unsigned long currentMillis = millis();
@@ -231,29 +231,16 @@ void setup() {
         digitalWrite(EGT_LEDS[ledIndex], LOW);
         ledIndex--;
         if (ledIndex < 0) {
-          break;  // Завершаем цикл, когда все светодиоды выключены
+          break;  // Завершаем цикл, когда все светодиоды выключены        
         }
       }
     }
   }  
 
-  const int RealDash = 115200;
-  const int SPEEDUINO = 115200;
-  Serial.begin(RealDash);
-  Serial3.begin(SPEEDUINO);
+  Serial.begin(115200);//RealDash
+  Serial3.begin(115200);//SPEEDUINO
  
   pinMode(CAN0_INT, INPUT);
-
-  for (int i = A0; i < A0 + TOTAL_ANALOG_PINS; i++) {
-    pinMode(i, INPUT);
-  }
-  for (int i = 22; i <= TOTAL_DIGITAL_PINS; i++) {
-    pinMode(i, INPUT);
-  } 
-
-for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
-    pinMode(digitalOutputPins[i], OUTPUT);
-}
 
   if (!initSHT31()) {
     // Обработка ошибки инициализации SHT31
@@ -296,7 +283,7 @@ initializeDigin();  // инициализируем значения перем�
 // Rest of your methods
 
 void processDigitalOutputs() {
-    for (int i = 0; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
+    for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
         if (digoutBuff[i] == HIGH) {
             digitalWrite(digitalOutputPins[i], HIGH);
         } else {
@@ -306,7 +293,7 @@ void processDigitalOutputs() {
 }
 
 void readDigitalOutputs() {
-    for (int i = 0; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
+    for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
         digoutBuff[i] = digitalRead(digitalOutputPins[i]);
     }
 }
