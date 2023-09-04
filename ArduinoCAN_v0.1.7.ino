@@ -212,9 +212,6 @@ void RealDashUpdateTask() {
 void setup() {
 configurePins();
 //ПРОВЕРКА РАБОТЫ СВЕТОДИОДОВ  ЕГТ КОГДА АРДУИНО ВКЛЮЧАЕТСЯ ИЛИ ПЕРЕЗАГРУЖАЕТСЯ   
-  for (int i = 0; i < 6; i++) {
-    pinMode(EGT_LEDS[i], OUTPUT);
-  }
   
   while(ledIndex < 6) {
     unsigned long currentMillis = millis();
