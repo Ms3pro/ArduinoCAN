@@ -4,7 +4,7 @@
 // Подключаем файл с определениями пинов
 #include "pin_definitions.h"
 
-void configurePins() {
+void configPins() {
     // Настройка пинов A0-A9 как входы
     DDRC &= ~0b00111111;
 
