@@ -214,11 +214,11 @@ void initialise_display()
   tft.setTextColor(YELLOW);
   tft.setTextSize(1.5);
   tft.setCursor(125, 5);
-  tft.println("TUR"); 
+  tft.println("CAN"); 
   tft.setTextColor(RED);
   tft.setTextSize(1.5);
   tft.setCursor(143, 5);
-  tft.println("BO");
+  tft.println("OK");
   tft.setTextColor(RED);
   tft.setTextSize(1.5);
   tft.setCursor(120, 15);
