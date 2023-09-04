@@ -1,13 +1,24 @@
 #ifndef PIN_CONFIG_H
 #define PIN_CONFIG_H
 
-// Определение масок для порта A, B, C и L
-#define PORT_A_MASK 0b00111111
-#define PORT_B_MASK 0b11111111
-#define PORT_C_MASK 0b11111111
-#define PORT_L_MASK 0b11111000
+// Подключаем файл с определениями пинов
+#include "pin_definitions.h"
 
-// Функция для настройки пинов
-void configPins();
+void configurePins() {
+    // Настройка пинов A0-A9 как входы
+    DDRC &= ~0b00111111;
+
+    // Настройка пинов A10-A15 как выходы
+    DDRA |= 0b111111 << 2;
+
+    // Настройка пинов 22-49 как входы
+    DDRB &= ~0b11111111;
+    DDRC &= ~0b11000000;
+    DDRD &= ~0b11111111;
+
+    // Настройка пинов 3-7 как выходы
+    DDRE |= 0b11111;
+}
 
 #endif
+
