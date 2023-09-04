@@ -1,7 +1,7 @@
-#include "PinConfiguration.h"
+#include "PinConfig.h"
 #include <Arduino.h>
 
-void configurePins() {
+void configPins() {
   // Настройка аналоговых входов от 0 до 5
   DDRC &= ~PORT_A_MASK;
 
