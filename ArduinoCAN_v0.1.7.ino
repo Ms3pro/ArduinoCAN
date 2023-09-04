@@ -1,5 +1,6 @@
 #include <EEPROM.h>
 #include <TaskScheduler.h>
+#include "PinConfiguration.h"
 #include "pidautotuner.h"
 #include "RealDash.h"
 #include "SHT31Helper.h"
