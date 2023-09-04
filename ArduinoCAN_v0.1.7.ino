@@ -245,17 +245,6 @@ configurePins();
  
   pinMode(CAN0_INT, INPUT);
 
-  for (int i = A0; i < A0 + TOTAL_ANALOG_PINS; i++) {
-    pinMode(i, INPUT);
-  }
-  for (int i = 22; i <= TOTAL_DIGITAL_PINS; i++) {
-    pinMode(i, INPUT);
-  } 
-
-for (int i = 3; i < TOTAL_DIGITAL_OUTPUT_PINS; i++) {
-    pinMode(digitalOutputPins[i], OUTPUT);
-}
-
   if (!initSHT31()) {
     // Обработка ошибки инициализации SHT31
   }
